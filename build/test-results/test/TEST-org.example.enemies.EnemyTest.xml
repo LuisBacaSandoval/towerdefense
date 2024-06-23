@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.enemies.EnemyTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2024-06-23T08:25:39" hostname="DESKTOP-OOBHPP4" time="0.007">
+  <properties/>
+  <testcase name="testGetSpeed()" classname="org.example.enemies.EnemyTest" time="0.002"/>
+  <testcase name="testSetHealth()" classname="org.example.enemies.EnemyTest" time="0.001"/>
+  <testcase name="testGetHealth()" classname="org.example.enemies.EnemyTest" time="0.001"/>
+  <testcase name="testSetReward()" classname="org.example.enemies.EnemyTest" time="0.001"/>
+  <testcase name="testGetReward()" classname="org.example.enemies.EnemyTest" time="0.001"/>
+  <testcase name="testConstructor()" classname="org.example.enemies.EnemyTest" time="0.001"/>
+  <testcase name="testSetSpeed()" classname="org.example.enemies.EnemyTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.player.PlayerTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-06-23T08:25:39" hostname="DESKTOP-OOBHPP4" time="0.002">
+  <properties/>
+  <testcase name="pruebaObtenerVidaDeBase()" classname="org.example.player.PlayerTest" time="0.0"/>
+  <testcase name="pruebaValoresIniciales()" classname="org.example.player.PlayerTest" time="0.0"/>
+  <testcase name="pruebaObtenerPuntuacion()" classname="org.example.player.PlayerTest" time="0.0"/>
+  <testcase name="pruebaReducirVidaALaBase()" classname="org.example.player.PlayerTest" time="0.0"/>
+  <testcase name="pruebaAniadirPuntos()" classname="org.example.player.PlayerTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

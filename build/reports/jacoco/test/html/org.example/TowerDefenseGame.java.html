@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TowerDefenseGame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">towerdefense</a> &gt; <a href="index.source.html" class="el_package">org.example</a> &gt; <span class="el_source">TowerDefenseGame.java</span></div><h1>TowerDefenseGame.java</h1><pre class="source lang-java linenums">package org.example;
+
+import org.example.enemies.BasicEnemyFactory;
+import org.example.enemies.BossEnemyFactory;
+import org.example.enemies.Enemy;
+import org.example.map.Map;
+import org.example.player.Player;
+import org.example.towers.*;
+import org.example.towers.TowerFactory;
+import org.example.wave.Wave;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
+
+//Flujo del juego
+//Se inicializa el mapa, el jugador y la primera oleada de enemigos.
+//El jugador coloca torres en el mapa.
+//El jugador inicia una oleada y los enemigos comienzan a moverse hacia la base.
+//Las torres atacan a los enemigos dentro de su alcance
+//Se actualiza el estado del juego: se verifican las vidas de los enemigos, se calcula la puntuaciÃ³n y la salud de la base
+//Al finalizar una oleada, el jugador puede colocar nuevas torres o mejorar las existentes antes de iniciar la siguiente oleada
+//El juego termina si la salud de la base llega a cero.
+public class TowerDefenseGame {
+    private Map map;
+    private Player player;
+    private Wave wave;
+    private List&lt;Tower&gt; towers;
+
+    private static final java.util.Map&lt;String, TowerFactory&gt; towerTypeMap;
+    static {
+<span class="fc" id="L33">        towerTypeMap = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L34">        towerTypeMap.put(&quot;cannon&quot;, new CannonTowerFactory());</span>
+<span class="fc" id="L35">        towerTypeMap.put(&quot;arrow&quot;, new ArrowTowerFactory());</span>
+<span class="fc" id="L36">        towerTypeMap.put(&quot;laser&quot;, new LaserTowerFactory());</span>
+<span class="fc" id="L37">    }</span>
+    private TowerFactory towerType(String type) {
+<span class="nc" id="L39">        return towerTypeMap.getOrDefault(type.toLowerCase(), null);</span>
+    }
+<span class="fc" id="L41">    public TowerDefenseGame() {</span>
+<span class="fc" id="L42">        this.map = new Map();</span>
+<span class="fc" id="L43">        this.player = new Player();</span>
+<span class="fc" id="L44">        this.towers = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L45">    }</span>
+    //Metodos getters
+    public Map getMap() {
+<span class="fc" id="L48">        return map;</span>
+    }
+    public Player getPlayer() {
+<span class="fc" id="L51">        return player;</span>
+    }
+    public Wave getWave() {
+<span class="fc" id="L54">        return wave;</span>
+    }
+    //Metodo para poner una torre en la posicion (x,y)
+    public void placeTower(TowerFactory towerType, int x, int y) {
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (map.isValidPosition(x, y)){</span>
+<span class="fc" id="L59">            towers.add(towerType.createTower());</span>
+<span class="fc" id="L60">            map.placeTower(x, y);</span>
+        }
+<span class="fc" id="L62">    }</span>
+    //Metodo para comenzar la oleada de enemigos
+    private void startWave() {
+<span class="nc" id="L65">        BasicEnemyFactory basicEnemyFactory = new BasicEnemyFactory();</span>
+<span class="nc" id="L66">        BossEnemyFactory bossEnemyFactory = new BossEnemyFactory();</span>
+<span class="nc" id="L67">        wave = new Wave(1, basicEnemyFactory, bossEnemyFactory);</span>
+<span class="nc" id="L68">        wave.spawnEnemies();</span>
+<span class="nc" id="L69">        int i = 1;</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        for (Enemy enemy : wave.getEnemies()){</span>
+<span class="nc" id="L71">            System.out.println(&quot;Enemigo &quot; + i);</span>
+<span class="nc" id="L72">            wave.moveEnemies(enemy, towers, map);</span>
+<span class="nc" id="L73">            i++;</span>
+<span class="nc" id="L74">            System.out.println(&quot;********************&quot;);</span>
+<span class="nc" id="L75">        }</span>
+<span class="nc" id="L76">    }</span>
+
+    public static void main(String[] args) {
+<span class="nc" id="L79">        TowerDefenseGame towerDefenseGame = new TowerDefenseGame();</span>
+<span class="nc" id="L80">        Scanner scanner = new Scanner(System.in);</span>
+        String input;
+
+        while (true) {
+<span class="nc" id="L84">            System.out.print(&quot;Ingresa un comando ('PLACE_TOWER TipoTorre x y' o 'START_WAVE'): &quot;);</span>
+<span class="nc" id="L85">            input = scanner.nextLine();</span>
+
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            if (&quot;START_WAVE&quot;.equalsIgnoreCase(input)) {</span>
+<span class="nc" id="L88">                break; // Rompe el bucle para iniciar la oleada</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            } else if (input.toUpperCase().startsWith(&quot;PLACE_TOWER&quot;)) {</span>
+<span class="nc" id="L90">                String[] parts = input.split(&quot; &quot;);</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">                if (parts.length == 4) {</span>
+<span class="nc" id="L92">                    String towerType = parts[1];</span>
+<span class="nc" id="L93">                    int x = Integer.parseInt(parts[2]);</span>
+<span class="nc" id="L94">                    int y = Integer.parseInt(parts[3]);</span>
+                    // Llamamos al metodo para colocar la torre en la posicion (x,y)
+<span class="nc" id="L96">                    towerDefenseGame.placeTower(towerDefenseGame.towerType(towerType), x, y);</span>
+<span class="nc" id="L97">                    System.out.println(&quot;Torre &quot; + towerType + &quot; colocada en (&quot; + x + &quot;, &quot; + y + &quot;)&quot;);</span>
+<span class="nc" id="L98">                } else {</span>
+<span class="nc" id="L99">                    System.out.println(&quot;Formato de comando incorrecto. Usa: 'PLACE_TOWER TipoTorre x y'&quot;);</span>
+                }
+<span class="nc" id="L101">            } else {</span>
+<span class="nc" id="L102">                System.out.println(&quot;Comando no reconocido.&quot;);</span>
+            }
+        }
+
+        // Inicia la oleada
+<span class="nc" id="L107">        System.out.println(&quot;Iniciando oleada...&quot;);</span>
+<span class="nc" id="L108">        towerDefenseGame.startWave();</span>
+<span class="nc" id="L109">        System.out.println(&quot;Tower&quot;);</span>
+<span class="nc" id="L110">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

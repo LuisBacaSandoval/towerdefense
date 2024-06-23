@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Map.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">towerdefense</a> &gt; <a href="index.source.html" class="el_package">org.example.map</a> &gt; <span class="el_source">Map.java</span></div><h1>Map.java</h1><pre class="source lang-java linenums">package org.example.map;
+
+// El mapa es el escenario donde se desarrolla el juego.
+// EstÃ¡ representado por una matriz que define los caminos por los
+// que se moverÃ¡n los enemigos y las posiciones donde se pueden colocar las torres.
+// Una celda vacia('') representa un espacio disponible para colocar una torre
+// Una celda de camino('C') representa el camino por el que los enemigos se desplazan
+// La base ('B') representa el objetivo que los enemigos deben alcanzar
+// Nota:  El mapa se inicializa con un diseÃ±o predefinido que incluye caminos y posiciones
+// disponibles para las torres. El diseÃ±o del mapa no cambia durante el juego. Y tiene un tamaÃ±o de 5x5
+
+public class Map {
+    private final char[][] mapa;
+
+<span class="fc" id="L15">    public Map() {</span>
+        // Inicializa el mapa con un diseÃ±o predefinido de 5x5
+<span class="fc" id="L17">        mapa = new char[][]{</span>
+            {' ', ' ', ' ', ' ', 'B'},
+            {' ', ' ', ' ', 'C', ' '},
+            {' ', ' ', 'C', ' ', ' '},
+            {' ', 'C', ' ', ' ', ' '},
+            {'C', ' ', ' ', ' ', ' '}
+        };
+<span class="fc" id="L24">    }</span>
+
+    // MÃ©todo para mostrar el mapa
+    public void mostrarMapa() {
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        for (int i = 0; i &lt; mapa.length; i++) {</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">            for (int j = 0; j &lt; mapa[i].length; j++) {</span>
+<span class="nc" id="L30">                System.out.print(&quot;[&quot; + mapa[i][j] + &quot;]&quot;);</span>
+            }
+<span class="nc" id="L32">            System.out.println();</span>
+        }
+<span class="nc" id="L34">    }</span>
+    // MÃ©todo para colocar una torre en una posiciÃ³n especÃ­fica
+    public boolean placeTower(int fila, int columna) {
+<span class="fc bfc" id="L37" title="All 8 branches covered.">        if (fila &gt;= 0 &amp;&amp; fila &lt; mapa.length &amp;&amp; columna &gt;= 0 &amp;&amp; columna &lt; mapa.length) {</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">            if (isValidPosition(fila, columna)) {</span>
+<span class="fc" id="L39">                mapa[fila][columna] = 'T'; // 'T' representa una torre</span>
+<span class="fc" id="L40">                return true;</span>
+            }
+        }
+<span class="fc" id="L43">        return false;</span>
+    }
+    // MÃ©todo para colocar un enemigo en una posiciÃ³n especÃ­fica
+    public boolean colocarEnemigo(int fila, int columna){
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (esCamino(fila, columna)){</span>
+<span class="nc" id="L48">            mapa[fila][columna] = 'E';</span>
+<span class="nc bnc" id="L49" title="All 8 branches missed.">            if (fila+1 &gt;= 0 &amp;&amp; fila+1 &lt; mapa.length &amp;&amp; columna-1 &gt;= 0 &amp;&amp; columna-1 &lt; mapa.length){</span>
+<span class="nc" id="L50">                mapa[fila+1][columna-1] = 'C';</span>
+            }
+<span class="nc" id="L52">            return true;</span>
+        }
+<span class="nc" id="L54">        return false;</span>
+    }
+    // MÃ©todo para verificar si una posiciÃ³n es camino
+    public boolean esCamino(int fila, int columna) {
+<span class="nc bnc" id="L58" title="All 10 branches missed.">        return fila &gt;= 0 &amp;&amp; fila &lt; mapa.length &amp;&amp; columna &gt;= 0 &amp;&amp; columna &lt; mapa.length &amp;&amp; mapa[fila][columna] == 'C';</span>
+    }
+    // MÃ©todo para remover una torre de una posiciÃ³n especÃ­fica
+    public boolean removerTorre(int fila, int columna) {
+<span class="nc bnc" id="L62" title="All 10 branches missed.">        if (fila &gt;= 0 &amp;&amp; fila &lt; mapa.length &amp;&amp; columna &gt;= 0 &amp;&amp; columna &lt; mapa.length &amp;&amp; mapa[fila][columna] == 'T') {</span>
+<span class="nc" id="L63">            mapa[fila][columna] = ' ';</span>
+<span class="nc" id="L64">            return true;</span>
+        }
+<span class="nc" id="L66">        return false;</span>
+    }
+    // MÃ©todo para remover un enemigo de una posiciÃ³n especÃ­fica
+    public boolean removerEnemigo(int fila, int columna) {
+<span class="nc bnc" id="L70" title="All 10 branches missed.">        if (fila &gt;= 0 &amp;&amp; fila &lt; mapa.length &amp;&amp; columna &gt;= 0 &amp;&amp; columna &lt; mapa.length &amp;&amp; mapa[fila][columna] == 'E') {</span>
+<span class="nc" id="L71">            mapa[fila][columna] = 'C';</span>
+<span class="nc" id="L72">            return true;</span>
+        }
+<span class="nc" id="L74">        return false;</span>
+    }
+    // MÃ©todo para verificar si una posiciÃ³n es vÃ¡lida para colocar una torre
+    public boolean isValidPosition(int x, int y) {
+        // Verifica si la posiciÃ³n estÃ¡ dentro de los lÃ­mites del mapa
+<span class="pc bpc" id="L79" title="4 of 8 branches missed.">        if (x &gt;= 0 &amp;&amp; x &lt; mapa.length &amp;&amp; y &gt;= 0 &amp;&amp; y &lt; mapa.length) {</span>
+            // Verifica si la posiciÃ³n estÃ¡ vacÃ­a
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">            return mapa[x][y] == ' ';</span>
+        }
+<span class="nc" id="L83">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

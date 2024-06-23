@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Tower.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">towerdefense</a> &gt; <a href="index.source.html" class="el_package">org.example.towers</a> &gt; <span class="el_source">Tower.java</span></div><h1>Tower.java</h1><pre class="source lang-java linenums">package org.example.towers;
+
+//Las torres son las defensas que el jugador coloca en el mapa para
+// detener a los enemigos. Tienen diferentes caracterÃ­sticas y habilidades.
+
+import org.example.enemies.Enemy;
+
+public class Tower {
+    private int damage; // DaÃ±o: Cantidad de daÃ±o que inflige a los enemigos.
+    private int range;  // Alcance: NÃºmero de celdas a las que puede atacar desde su posiciÃ³n.
+    private int fireRate;  // Velocidad de disparo: Frecuencia con la que puede atacar, turnos entre disparo
+    private int posX;//fila
+    private int posY;//columna
+
+    //constructor de la clase
+<span class="fc" id="L16">    public Tower(int damage, int range, int fireRate) {</span>
+<span class="fc" id="L17">        this.damage = damage;</span>
+<span class="fc" id="L18">        this.range = range;</span>
+<span class="fc" id="L19">        this.fireRate = fireRate;</span>
+<span class="fc" id="L20">    }</span>
+
+    //getters y setters de los atributos de la clase
+<span class="fc" id="L23">    public int getDamage() { return damage; }</span>
+<span class="fc" id="L24">    public void setDamage(int damage) { this.damage = damage; }</span>
+
+<span class="fc" id="L26">    public int getRange() { return range; }</span>
+<span class="fc" id="L27">    public void setRange(int range) { this.range = range; }</span>
+
+<span class="fc" id="L29">    public int getFireRate() { return fireRate; }</span>
+<span class="fc" id="L30">    public void setFireRate(int fireRate) { this.fireRate = fireRate; }</span>
+
+    public int getPosX() {
+<span class="fc" id="L33">        return posX;</span>
+    }
+
+    public void setPosX(int posX) {
+<span class="fc" id="L37">        this.posX = posX;</span>
+<span class="fc" id="L38">    }</span>
+
+    public int getPosY() {
+<span class="fc" id="L41">        return posY;</span>
+    }
+
+    public void setPosY(int posY) {
+<span class="fc" id="L45">        this.posY = posY;</span>
+<span class="fc" id="L46">    }</span>
+
+    //Metodo para atacar enemigos que estan dentro del rango de la torre
+    public void attack(Enemy enemies){
+<span class="fc" id="L50">        double length = Math.sqrt(Math.pow(Math.abs(enemies.getPosX()-getPosX()), 2)+Math.pow(Math.abs(enemies.getPosY()-getPosY()), 2));</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (length &lt;= getRange()){</span>
+<span class="fc" id="L52">            enemies.setHealth(enemies.getHealth() - getDamage());</span>
+        }
+<span class="fc" id="L54">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

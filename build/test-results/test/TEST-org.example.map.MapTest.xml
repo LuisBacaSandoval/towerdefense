@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.map.MapTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2024-06-23T08:25:39" hostname="DESKTOP-OOBHPP4" time="0.006">
+  <properties/>
+  <testcase name="pruebaLimiteSuperiorFila()" classname="org.example.map.MapTest" time="0.0"/>
+  <testcase name="pruebaColumnaIncorrectaPositiva()" classname="org.example.map.MapTest" time="0.001"/>
+  <testcase name="pruebaLimiteInferiorFila()" classname="org.example.map.MapTest" time="0.0"/>
+  <testcase name="pruebaColumnaIncorrectaNegativa()" classname="org.example.map.MapTest" time="0.001"/>
+  <testcase name="pruebaFilaYColumnaIncorrecta()" classname="org.example.map.MapTest" time="0.0"/>
+  <testcase name="pruebaLimiteInferiorColumna()" classname="org.example.map.MapTest" time="0.001"/>
+  <testcase name="pruebaLimiteSuperiorColumna()" classname="org.example.map.MapTest" time="0.0"/>
+  <testcase name="pruebaFilaYColumnaCorrecta()" classname="org.example.map.MapTest" time="0.0"/>
+  <testcase name="pruebaFilaIncorrectaPositiva()" classname="org.example.map.MapTest" time="0.0"/>
+  <testcase name="pruebaFilaIncorrectaNegativa()" classname="org.example.map.MapTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

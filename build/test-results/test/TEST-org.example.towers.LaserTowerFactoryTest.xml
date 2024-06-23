@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.towers.LaserTowerFactoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-06-23T08:25:39" hostname="DESKTOP-OOBHPP4" time="0.001">
+  <properties/>
+  <testcase name="testCreateBasicEnemy()" classname="org.example.towers.LaserTowerFactoryTest" time="0.0"/>
+  <testcase name="testCreateTowerNotNull()" classname="org.example.towers.LaserTowerFactoryTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

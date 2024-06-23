@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.towers.TowerTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2024-06-23T08:25:39" hostname="DESKTOP-OOBHPP4" time="0.005">
+  <properties/>
+  <testcase name="testGetRange()" classname="org.example.towers.TowerTest" time="0.001"/>
+  <testcase name="testAttack_EnemyInRange()" classname="org.example.towers.TowerTest" time="0.0"/>
+  <testcase name="testSetFireRate()" classname="org.example.towers.TowerTest" time="0.0"/>
+  <testcase name="testSetDamage()" classname="org.example.towers.TowerTest" time="0.0"/>
+  <testcase name="testGetFireRate()" classname="org.example.towers.TowerTest" time="0.001"/>
+  <testcase name="testGetDamage()" classname="org.example.towers.TowerTest" time="0.0"/>
+  <testcase name="testAttack_EnemyOutOfRange()" classname="org.example.towers.TowerTest" time="0.001"/>
+  <testcase name="testConstructor()" classname="org.example.towers.TowerTest" time="0.0"/>
+  <testcase name="testSetRange()" classname="org.example.towers.TowerTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

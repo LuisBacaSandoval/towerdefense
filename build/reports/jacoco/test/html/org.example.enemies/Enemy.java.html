@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Enemy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">towerdefense</a> &gt; <a href="index.source.html" class="el_package">org.example.enemies</a> &gt; <span class="el_source">Enemy.java</span></div><h1>Enemy.java</h1><pre class="source lang-java linenums">package org.example.enemies;
+
+//Los enemigos son las entidades que el jugador debe detener.
+// Tienen varias caracterÃ­sticas que determinan su comportamiento y dificultad.
+public class Enemy {
+    private int speed; // Velocidad: Determina cuÃ¡ntas celdas se mueve el enemigo por turno
+    private int health;// Vida: Cantidad de daÃ±o que puede recibir antes de ser derrotado.
+    private int reward;// Recompensa: Puntos que el jugador gana al derrotar al enemigo.
+    private int posX;//fila
+    private int posY;//columna
+    //constructor de la clase
+<span class="fc" id="L12">    public Enemy(int speed, int health, int reward) {</span>
+<span class="fc" id="L13">        this.speed = speed;</span>
+<span class="fc" id="L14">        this.health = health;</span>
+<span class="fc" id="L15">        this.reward = reward;</span>
+<span class="fc" id="L16">    }</span>
+
+    //getters y setters de los atributos de la clase
+<span class="fc" id="L19">    public int getSpeed() {return speed;}</span>
+<span class="fc" id="L20">    public void setSpeed(int speed) {this.speed = speed;}</span>
+
+<span class="fc" id="L22">    public int getHealth() {return health;}</span>
+<span class="fc" id="L23">    public void setHealth(int health) {this.health = health;}</span>
+
+<span class="fc" id="L25">    public int getReward() {return reward;}</span>
+<span class="fc" id="L26">    public void setReward(int reward) {this.reward = reward;}</span>
+
+<span class="fc" id="L28">    public int getPosX() {return posX;}</span>
+<span class="fc" id="L29">    public void setPosX(int posX) {this.posX = posX;}</span>
+
+<span class="fc" id="L31">    public int getPosY() {return posY;}</span>
+<span class="fc" id="L32">    public void setPosY(int posY) {this.posY = posY;}</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

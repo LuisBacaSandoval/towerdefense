@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Wave.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">towerdefense</a> &gt; <a href="index.source.html" class="el_package">org.example.wave</a> &gt; <span class="el_source">Wave.java</span></div><h1>Wave.java</h1><pre class="source lang-java linenums">package org.example.wave;
+
+import org.example.enemies.*;
+import org.example.map.Map;
+import org.example.towers.Tower;
+
+import java.util.*;
+
+// Los enemigos llegan en oleadas que aumentan en dificultad a medida que avanza el
+//juego. Cada oleada puede tener mÃ¡s enemigos o enemigos mÃ¡s fuertes.
+public class Wave {
+    private List&lt;Enemy&gt; enemies;// Variedad de enemigos que aparecen en la oleada
+    private int waveNumber;// Cantidad de enemigos por oleada
+    BasicEnemyFactory basicEnemyFactory;//fabrica de enemigos basicos
+    BossEnemyFactory bossEnemyFactory;//fabrica de enemigos boss
+    //constructor de la clase
+<span class="fc" id="L17">    public Wave(int waveNumber, BasicEnemyFactory basicEnemyFactory, BossEnemyFactory bossEnemyFactory) {</span>
+<span class="fc" id="L18">        this.basicEnemyFactory = basicEnemyFactory;</span>
+<span class="fc" id="L19">        this.bossEnemyFactory = bossEnemyFactory;</span>
+<span class="fc" id="L20">        this.waveNumber = waveNumber;</span>
+<span class="fc" id="L21">    }</span>
+    //Metodo que genera enemigos segun la oleada, en la oleada 1 se generan 5 enemigos basicos
+    private List&lt;Enemy&gt; generateEnemies(int waveNumber) {
+<span class="fc" id="L24">        List&lt;Enemy&gt; enemies = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        for (int i = 0; i &lt; waveNumber * 5; i++) { // mÃ¡s enemigos cada oleada</span>
+<span class="fc" id="L26">            enemies.add(basicEnemyFactory.createEnemy());</span>
+        }
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        if (waveNumber % 5 == 0) { // jefe cada 5 oleadas</span>
+<span class="fc" id="L29">            enemies.add(bossEnemyFactory.createEnemy());</span>
+        }
+<span class="fc" id="L31">        return enemies;</span>
+    }
+
+    public List&lt;Enemy&gt; getEnemies() {
+<span class="fc" id="L35">        return enemies;</span>
+    }
+    // MÃ©todos para manejar el progreso de la oleada
+    public void moveEnemies(Enemy enemy, List&lt;Tower&gt; towers, Map map){
+        //ponemos el enemigo en la casilla 4,0
+<span class="nc" id="L40">        int x = 4;</span>
+<span class="nc" id="L41">        int y = 0;</span>
+        do {
+<span class="nc bnc" id="L43" title="All 4 branches missed.">            if (map.colocarEnemigo(x, y) &amp;&amp; enemy.getHealth()&gt;0){</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">                for (Tower tower : towers){//todas las torres atacan al enemigo si esta en su rango</span>
+<span class="nc" id="L45">                    tower.attack(enemy);</span>
+<span class="nc" id="L46">                }</span>
+<span class="nc" id="L47">                map.mostrarMapa();</span>
+<span class="nc" id="L48">                System.out.println(&quot;********************&quot;);</span>
+<span class="nc bnc" id="L49" title="All 4 branches missed.">                if (x==1 &amp;&amp; y==3){</span>
+<span class="nc" id="L50">                    map.removerEnemigo(x,y);</span>
+                }
+            }else {
+                break;
+            }
+<span class="nc" id="L55">            x--;</span>
+<span class="nc" id="L56">            y++;</span>
+<span class="nc" id="L57">        }while (true);</span>
+<span class="nc" id="L58">    }</span>
+    public void  spawnEnemies(){
+<span class="fc" id="L60">        this.enemies = generateEnemies(waveNumber);</span>
+<span class="fc" id="L61">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

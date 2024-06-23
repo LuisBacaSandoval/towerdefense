@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'jacoco' // Plugin de JaCoCo
+    id 'info.solidsoft.pitest' version '1.15.0'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    // Mockito Core
+    testImplementation 'org.mockito:mockito-core:4.0.0'
+    // Mockito JUnit 5 Integration
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.0.0'
+    pitest 'org.pitest:pitest-junit5-plugin:1.1.0'
+    pitest 'org.pitest:pitest-junit5-plugin:1.1.0'
+}
+pitest {
+    targetClasses = ['org.example.*'] // Paquete de clases a mutar
+    excludedMethods = ['void .*'] // Excluir métodos void
+    mutators = ['DEFAULTS'] // Conjunto de mutadores [OLD_DEFAULTS, DEFAULTS, STRONGER, ALL]
+    outputFormats = ['HTML'] // Formato de salida del informe
+    timestampedReports = false // Deshabilitar informes con marca de tiempo para facilitar la navegación
+}
+// jacoco
+jacoco {
+    toolVersion = "0.8.12" // Versión de JaCoCo (compatible con java 21)
+}
+
+jacocoTestReport {
+    dependsOn test // Ejecuta las pruebas antes de generar el informe
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+}
+test {
+    useJUnitPlatform()
+}

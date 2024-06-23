@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.TowerDefenseGameTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-06-23T08:25:38" hostname="DESKTOP-OOBHPP4" time="0.754">
+  <properties/>
+  <testcase name="testGetMap_ReturnsNonNullMap()" classname="org.example.TowerDefenseGameTest" time="0.711"/>
+  <testcase name="testGetWave_InitiallyNull()" classname="org.example.TowerDefenseGameTest" time="0.002"/>
+  <testcase name="testPlaceTower_ValidPosition()" classname="org.example.TowerDefenseGameTest" time="0.032"/>
+  <testcase name="testGetPlayer_ReturnsNonNullPlayer()" classname="org.example.TowerDefenseGameTest" time="0.002"/>
+  <testcase name="testPlaceTower_InvalidPosition()" classname="org.example.TowerDefenseGameTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
